@@ -2,6 +2,8 @@ package com.photography.demo.controller;
 
 import com.photography.demo.model.Booking;
 import com.photography.demo.repository.BookingRepository;
+import com.photography.demo.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ public class BookingController {
 
     private final BookingRepository bookingRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public BookingController(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
@@ -27,7 +32,20 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         Booking savedBooking = bookingRepository.save(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBooking);
+
+        try {
+            // Replace with your actual receiving email address
+            emailService.sendBookingNotification(
+                    "lakshmistudio6677@gmail.com",
+                    booking.getClientName(),
+                    booking.getEventDate().toString(),
+                    booking.getContact()
+            );
+        } catch (Exception e) {
+            System.err.println("Failed to send email: " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(savedBooking);
     }
 
     @DeleteMapping("/{id}")
