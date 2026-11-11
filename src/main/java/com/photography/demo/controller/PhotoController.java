@@ -3,14 +3,13 @@ package com.photography.demo.controller;
 import com.photography.demo.model.Photo;
 import com.photography.demo.repository.PhotoRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/photos")
+@RequestMapping("/photos")
 @CrossOrigin(origins = "*")
 public class PhotoController {
 
