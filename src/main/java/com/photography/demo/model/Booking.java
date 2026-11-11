@@ -3,7 +3,7 @@ package com.photography.demo.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "bookings")
@@ -15,7 +15,10 @@ public class Booking {
 
     private String clientName;
     private String contact;
+    private String email; // <--- New field to store customer's email
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDateTime eventDate;
+    private LocalDate eventDate;
+    private String eventType; // <--- New field (e.g., Birthday, Marriage, Function, etc.)
     private String status; // e.g., Pending, Confirmed
 }

@@ -3,7 +3,7 @@ package com.photography.demo.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
@@ -17,7 +17,7 @@ public class Event {
 
     // This annotation tells Jackson to parse and format the date as dd-MM-yyyy HH:mm:ss
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDateTime date;
+    private LocalDate date;
     private String location;
 
     @Column(length = 1000)
