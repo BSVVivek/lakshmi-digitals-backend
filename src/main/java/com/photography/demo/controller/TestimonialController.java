@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/testimonials")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class TestimonialController {
 
     private final TestimonialRepository testimonialRepository;
