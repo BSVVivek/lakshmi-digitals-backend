@@ -6,7 +6,9 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "bookings")
+@Table(name = "bookings", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"clientName", "contact", "eventDate"})
+})
 @Data
 public class Booking {
     @Id
