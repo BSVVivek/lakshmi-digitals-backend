@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local secrets and environment files
+src/main/resources/application-local.properties
+.env
+.env.*
+
+# Build output
+target/
+
+# Local secrets
+src/main/resources/application-local.properties
+**/application-local.properties
+.env
+.env.*
