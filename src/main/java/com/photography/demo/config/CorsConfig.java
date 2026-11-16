@@ -20,8 +20,14 @@ public class CorsConfig {
 
                 registry.addMapping("/**")
 
-                        .allowedOrigins(
+                        .allowedOriginPatterns(
+                                // Main production frontend
                                 "https://lakshmi-digitals-frontend.vercel.app",
+
+                                // Vercel preview deployments
+                                "https://lakshmi-digitals-frontend-*-vivek-1050.vercel.app",
+
+                                // Local development
                                 "http://localhost:5173",
                                 "http://localhost:3000"
                         )
