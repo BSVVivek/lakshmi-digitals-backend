@@ -99,7 +99,8 @@ public class SecurityConfig {
                                 "/photos/**",
                                 "/testimonials",
                                 "/testimonials/**",
-                                "/bookings/count"
+                                "/bookings/count",
+                                "/api/health"
                         ).permitAll()
 
                         // Anyone can submit a booking
