@@ -97,6 +97,7 @@ public class BookingController {
         System.out.println("Booking saved successfully.");
 
         // Send admin and customer emails through Brevo
+
         try {
 
             emailService.sendNewBookingEmails(
@@ -107,14 +108,12 @@ public class BookingController {
                     savedBooking.getEmail()
             );
 
-            System.out.println(
-                    "Booking notification process completed."
-            );
+            System.out.println("Booking email tasks successfully queued.");
 
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
 
             System.err.println(
-                    "Booking saved, but one or more emails failed."
+                    "Booking was saved, but email tasks could not be queued."
             );
 
             e.printStackTrace();
@@ -189,6 +188,7 @@ public class BookingController {
         System.out.println("New Status: " + newStatus);
 
         // Send email only when status changes to Confirmed or Rejected
+
         boolean isFinalStatus =
                 "Confirmed".equalsIgnoreCase(newStatus)
                         || "Rejected".equalsIgnoreCase(newStatus);
@@ -208,19 +208,19 @@ public class BookingController {
                 );
 
                 System.out.println(
-                        "Customer status email process completed."
+                        "Customer status email task successfully queued."
                 );
 
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
 
                 System.err.println(
-                        "Booking status updated, but customer email failed."
+                        "Booking status was updated, but email task could not be queued."
                 );
 
                 e.printStackTrace();
             }
-
-        } else {
+        }
+ else {
 
             System.out.println(
                     "Status email skipped. No eligible status transition."

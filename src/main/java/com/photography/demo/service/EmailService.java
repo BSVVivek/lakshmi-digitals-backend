@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.scheduling.annotation.Async;
 
 @Service
 public class EmailService {
@@ -82,7 +83,7 @@ public class EmailService {
     // 1. NEW BOOKING
     // Sends one notification to admin and one to customer.
     // =====================================================
-
+    @Async("emailTaskExecutor")
     public void sendNewBookingEmails(
             String clientName,
             String eventDate,
@@ -319,7 +320,7 @@ public class EmailService {
     // 2. BOOKING STATUS UPDATE
     // Sends confirmation or rejection to the customer.
     // =====================================================
-
+    @Async("emailTaskExecutor")
     public void sendCustomerStatusUpdateEmail(
             String customerEmail,
             String clientName,

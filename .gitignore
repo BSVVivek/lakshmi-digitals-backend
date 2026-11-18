@@ -39,9 +39,3 @@ src/main/resources/application-local.properties
 
 # Build output
 target/
-
-# Local secrets
-src/main/resources/application-local.properties
-**/application-local.properties
-.env
-.env.*
